@@ -5,16 +5,16 @@ const getAll = () => {
             resolve(rows);
         });
     });
-}
+};
 
-const add = ({ nombre, apellidos, direccion, email, edad, sexo, cuota, fecha_nacimiento, dni, fk_profesor }) => {
+const addOne = ({ nombre, apellidos, direccion, email, edad, sexo, cuota, fecha_nacimiento, dni, fk_profesor }) => {
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO clientes (nombre, apellidos, direccion, email, edad, sexo, fecha_inscripcion, cuota, fecha_nacimiento, dni, fk_profesor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, direccion, email, edad, sexo, new Date(), cuota, fecha_nacimiento, dni, fk_profesor], (err, result) => {
             if (err) return reject(err);
             resolve(result);
         });
     });
-}
+};
 
 const editById = ({ nombre, apellidos, direccion, email, edad, sexo, fecha_inscripcion, cuota, fecha_nacimiento, dni, fk_profesor }, clienteId) => {
     return new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ const editById = ({ nombre, apellidos, direccion, email, edad, sexo, fecha_inscr
             resolve(result);
         });
     });
-}
+};
 
 const deleteById = (clienteId) => {
     return new Promise((resolve, reject) => {
@@ -32,11 +32,11 @@ const deleteById = (clienteId) => {
             resolve(result);
         });
     });
-}
+};
 
 module.exports = {
     getAll: getAll,
-    add: add,
+    addOne: addOne,
     editById: editById,
     deleteById: deleteById
 }

@@ -34,8 +34,9 @@ router.post('/', [
         res.status(422).json(errors.array());
     }
     else {
-        Cliente.add(req.body)
+        Cliente.addOne(req.body)
             .then(result => res.json(result))
+            .catch(err => res.json(err));
     }
 });
 
@@ -44,8 +45,7 @@ router.put('/edit/:id', (req, res) => {
     Cliente.editById(req.body, req.params.id)
         .then(result => res.json(result))
         .catch(err => {
-            console.log(err);
-            res.json({ error: 'Error al editar los datos de la BD' });
+            res.json({ error: 'Error al editar los datos de la BD. Hay que editar todos los campos' });
         });
 });
 
